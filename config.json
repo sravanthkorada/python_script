@@ -1,0 +1,609 @@
+{
+    "config": {
+        "token_url": "/api/erp/tokenRelay?type=client",
+        "boss_query_url": "/api/boss/extraction/extract",
+        "hierarchy_query_url": "/api/boss/extraction/extract",
+        "ads_data_extract_url": "/api/v1/av/data",
+        "ads_member_extract_url": "/api/v1/pov/data",
+        "headers": {
+            "Accept": "application/json"
+        }
+    },
+    "api_requests": {
+        "avs": [
+            {
+                "av_name": "CashTransactionSummary",
+                "boss_query_request_payload": {
+                    "analyticViews": {
+                        "CashTransactionSummary": {
+                            "module": "oraErpCoreCashEntries",
+                            "name": "CashTransactionSummary",
+                            "measureAliases": {
+                                "cashTransactionAmount": "cashTransactionAmount"
+                            },
+                            "dimensions": {
+                                "transactionDate": {
+                                    "transactionDateHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "transactionDateHierarchymemberName",
+                                            "$depth": "transactionDateHierarchydepth",
+                                            "$memberUniqueName": "transactionDateHierarchymemberUniqueName",
+                                            "periodId": "transactionDateHierarchyperiodId",
+                                            "yearId": "transactionDateHierarchyyearId",
+                                            "periodStartDate": "transactionDateHierarchyperiodStartDate",
+                                            "periodEndDate": "transactionDateHierarchyperiodEndDate",
+                                            "transactionDate": "transactionDateHierarchytransactionDate",
+                                            "$hierOrder": "transactionDateHierarchyhierOrder"
+                                        }
+                                    }
+                                },
+                                "legalEntity": {
+                                    "legalEntityHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "legalEntityHierarchymemberName",
+                                            "$depth": "legalEntityHierarchydepth",
+                                            "$memberUniqueName": "legalEntityHierarchymemberUniqueName",
+                                            "legalEntityIdentifier": "legalEntityHierarchylegalEntityIdentifier",
+                                            "legalEntityId": "legalEntityHierarchylegalEntityId",
+                                            "legalEntityName": "legalEntityHierarchylegalEntityName",
+                                            "legalEntityCountryCode": "legalEntityHierarchylegalEntityCountryCode",
+                                            "ledgerCurrCode": "legalEntityHierarchyledgerCurrCode",
+                                            "$hierOrder": "legalEntityHierarchyhierOrder"
+                                        }
+                                    }
+                                },
+                                "businessUnit": {
+                                    "businessUnitHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "businessUnitHierarchymemberName",
+                                            "$depth": "businessUnitHierarchydepth",
+                                            "$memberUniqueName": "businessUnitHierarchymemberUniqueName",
+                                            "businessUnitId": "businessUnitHierarchybusinessUnitId",
+                                            "businessUnitName": "businessUnitHierarchybusinessUnitName",
+                                            "$hierOrder": "businessUnitHierarchyhierOrder"
+                                        }
+                                    }
+                                },
+                                "bankAccount": {
+                                    "bankAccountHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "bankAccountHierarchymemberName",
+                                            "$depth": "bankAccountHierarchydepth",
+                                            "$memberUniqueName": "bankAccountHierarchymemberUniqueName",
+                                            "bankAccountId": "bankAccountHierarchybankAccountId",
+                                            "bankAccountName": "bankAccountHierarchybankAccountName",
+                                            "bankName": "bankAccountHierarchybankName",
+                                            "bankBranchName": "bankAccountHierarchybankBranchName",
+                                            "targetBalance": "bankAccountHierarchytargetBalance",
+                                            "currencyCode": "bankAccountHierarchycurrencyCode",
+                                            "$hierOrder": "bankAccountHierarchyhierOrder"
+                                        }
+                                    }
+                                },
+                                "flowIndicator": {
+                                    "flowIndicatorHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "flowIndicatorHierarchymemberName",
+                                            "$depth": "flowIndicatorHierarchydepth",
+                                            "$memberUniqueName": "flowIndicatorHierarchymemberUniqueName",
+                                            "flowIndicatorCode": "flowIndicatorHierarchyflowIndicatorCode",
+                                            "flowIndicator": "flowIndicatorHierarchyflowIndicator",
+                                            "$hierOrder": "flowIndicatorHierarchyhierOrder"
+                                        }
+                                    }
+                                },
+                                "transactionType": {
+                                    "transactionTypeHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "transactionTypeHierarchymemberName",
+                                            "$depth": "transactionTypeHierarchydepth",
+                                            "$memberUniqueName": "transactionTypeHierarchymemberUniqueName",
+                                            "transactionTypeCode": "transactionTypeHierarchytransactionTypeCode",
+                                            "transactionType": "transactionTypeHierarchytransactionType",
+                                            "$hierOrder": "transactionTypeHierarchyhierOrder"
+                                        }
+                                    }
+                                },
+                                "cashTransactionCurrency": {
+                                    "cashTransactionCurrencyHierarchy": {
+                                        "aliases": {
+                                            "$memberName": "cashTransactionCurrencyHierarchymemberName",
+                                            "$depth": "cashTransactionCurrencyHierarchydepth",
+                                            "$memberUniqueName": "cashTransactionCurrencyHierarchymemberUniqueName",
+                                            "cashTransactionCurrencyCode": "cashTransactionCurrencyHierarchycashTransactionCurrencyCode",
+                                            "$hierOrder": "cashTransactionCurrencyHierarchyhierOrder"
+                                        }
+                                    }
+                                }
+                            },
+                            "filter": "((transactionDate.transactionDateHierarchy.$depth IN (3))) AND ((legalEntity.legalEntityHierarchy.$depth IN (1))) AND ((businessUnit.businessUnitHierarchy.$depth IN (1))) AND ((bankAccount.bankAccountHierarchy.$depth IN (1))) AND ((flowIndicator.flowIndicatorHierarchy.$depth IN (1))) AND ((transactionType.transactionTypeHierarchy.$depth IN (1))) AND ((cashTransactionCurrency.cashTransactionCurrencyHierarchy.$depth IN (1)))"
+                        }
+                    },
+                    "viewQueries": {},
+                    "return": [
+                        {
+                            "name": "transactionDateHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "transactionDateHierarchymemberName"
+                        },
+                        {
+                            "name": "transactionDateHierarchydepth"
+                        },
+                        {
+                            "name": "transactionDateHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "transactionDateHierarchyperiodId"
+                        },
+                        {
+                            "name": "transactionDateHierarchyyearId"
+                        },
+                        {
+                            "name": "transactionDateHierarchyperiodStartDate"
+                        },
+                        {
+                            "name": "transactionDateHierarchyperiodEndDate"
+                        },
+                        {
+                            "name": "transactionDateHierarchytransactionDate"
+                        },
+                        {
+                            "name": "legalEntityHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "legalEntityHierarchymemberName"
+                        },
+                        {
+                            "name": "legalEntityHierarchydepth"
+                        },
+                        {
+                            "name": "legalEntityHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "legalEntityHierarchylegalEntityIdentifier"
+                        },
+                        {
+                            "name": "legalEntityHierarchylegalEntityId"
+                        },
+                        {
+                            "name": "legalEntityHierarchylegalEntityName"
+                        },
+                        {
+                            "name": "legalEntityHierarchylegalEntityCountryCode"
+                        },
+                        {
+                            "name": "legalEntityHierarchyledgerCurrCode"
+                        },
+                        {
+                            "name": "businessUnitHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "businessUnitHierarchymemberName"
+                        },
+                        {
+                            "name": "businessUnitHierarchydepth"
+                        },
+                        {
+                            "name": "businessUnitHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "businessUnitHierarchybusinessUnitId"
+                        },
+                        {
+                            "name": "businessUnitHierarchybusinessUnitName"
+                        },
+                        {
+                            "name": "bankAccountHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "bankAccountHierarchymemberName"
+                        },
+                        {
+                            "name": "bankAccountHierarchydepth"
+                        },
+                        {
+                            "name": "bankAccountHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "bankAccountHierarchybankAccountId"
+                        },
+                        {
+                            "name": "bankAccountHierarchybankAccountName"
+                        },
+                        {
+                            "name": "bankAccountHierarchybankName"
+                        },
+                        {
+                            "name": "bankAccountHierarchybankBranchName"
+                        },
+                        {
+                            "name": "bankAccountHierarchytargetBalance"
+                        },
+                        {
+                            "name": "bankAccountHierarchycurrencyCode"
+                        },
+                        {
+                            "name": "flowIndicatorHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "flowIndicatorHierarchymemberName"
+                        },
+                        {
+                            "name": "flowIndicatorHierarchydepth"
+                        },
+                        {
+                            "name": "flowIndicatorHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "flowIndicatorHierarchyflowIndicatorCode"
+                        },
+                        {
+                            "name": "flowIndicatorHierarchyflowIndicator"
+                        },
+                        {
+                            "name": "transactionTypeHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "transactionTypeHierarchymemberName"
+                        },
+                        {
+                            "name": "transactionTypeHierarchydepth"
+                        },
+                        {
+                            "name": "transactionTypeHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "transactionTypeHierarchytransactionTypeCode"
+                        },
+                        {
+                            "name": "transactionTypeHierarchytransactionType"
+                        },
+                        {
+                            "name": "cashTransactionCurrencyHierarchydimensionDisplayName"
+                        },
+                        {
+                            "name": "cashTransactionCurrencyHierarchymemberName"
+                        },
+                        {
+                            "name": "cashTransactionCurrencyHierarchydepth"
+                        },
+                        {
+                            "name": "cashTransactionCurrencyHierarchymemberUniqueName"
+                        },
+                        {
+                            "name": "cashTransactionCurrencyHierarchycashTransactionCurrencyCode"
+                        },
+                        {
+                            "name": "currencyTypeHierarchymemberName"
+                        },
+                        {
+                            "name": "forecastHierarchymemberName"
+                        },
+                        {
+                            "name": "cashTransactionAmount"
+                        },
+                        {
+                            "name": "totalCount"
+                        },
+                        {
+                            "name": "isFiltered"
+                        }
+                    ],
+                    "select": "SELECT 'Transaction Date' transactionDateHierarchydimensionDisplayName,CashTransactionSummary.transactionDateHierarchymemberName transactionDateHierarchymemberName,CashTransactionSummary.transactionDateHierarchydepth transactionDateHierarchydepth,CashTransactionSummary.transactionDateHierarchymemberUniqueName transactionDateHierarchymemberUniqueName,CashTransactionSummary.transactionDateHierarchyperiodId transactionDateHierarchyperiodId,CashTransactionSummary.transactionDateHierarchyyearId transactionDateHierarchyyearId,CashTransactionSummary.transactionDateHierarchyperiodStartDate transactionDateHierarchyperiodStartDate,CashTransactionSummary.transactionDateHierarchyperiodEndDate transactionDateHierarchyperiodEndDate,CashTransactionSummary.transactionDateHierarchytransactionDate transactionDateHierarchytransactionDate,'Legal Entity' legalEntityHierarchydimensionDisplayName,CashTransactionSummary.legalEntityHierarchymemberName legalEntityHierarchymemberName,CashTransactionSummary.legalEntityHierarchydepth legalEntityHierarchydepth,CashTransactionSummary.legalEntityHierarchymemberUniqueName legalEntityHierarchymemberUniqueName,CashTransactionSummary.legalEntityHierarchylegalEntityIdentifier legalEntityHierarchylegalEntityIdentifier,CashTransactionSummary.legalEntityHierarchylegalEntityId legalEntityHierarchylegalEntityId,CashTransactionSummary.legalEntityHierarchylegalEntityName legalEntityHierarchylegalEntityName,CashTransactionSummary.legalEntityHierarchylegalEntityCountryCode legalEntityHierarchylegalEntityCountryCode,CashTransactionSummary.legalEntityHierarchyledgerCurrCode legalEntityHierarchyledgerCurrCode,'Business Unit' businessUnitHierarchydimensionDisplayName,CashTransactionSummary.businessUnitHierarchymemberName businessUnitHierarchymemberName,CashTransactionSummary.businessUnitHierarchydepth businessUnitHierarchydepth,CashTransactionSummary.businessUnitHierarchymemberUniqueName businessUnitHierarchymemberUniqueName,CashTransactionSummary.businessUnitHierarchybusinessUnitId businessUnitHierarchybusinessUnitId,CashTransactionSummary.businessUnitHierarchybusinessUnitName businessUnitHierarchybusinessUnitName,'Bank Account' bankAccountHierarchydimensionDisplayName,CashTransactionSummary.bankAccountHierarchymemberName bankAccountHierarchymemberName,CashTransactionSummary.bankAccountHierarchydepth bankAccountHierarchydepth,CashTransactionSummary.bankAccountHierarchymemberUniqueName bankAccountHierarchymemberUniqueName,CashTransactionSummary.bankAccountHierarchybankAccountId bankAccountHierarchybankAccountId,CashTransactionSummary.bankAccountHierarchybankAccountName bankAccountHierarchybankAccountName,CashTransactionSummary.bankAccountHierarchybankName bankAccountHierarchybankName,CashTransactionSummary.bankAccountHierarchybankBranchName bankAccountHierarchybankBranchName,CashTransactionSummary.bankAccountHierarchytargetBalance bankAccountHierarchytargetBalance,CashTransactionSummary.bankAccountHierarchycurrencyCode bankAccountHierarchycurrencyCode,'Flow Indicator' flowIndicatorHierarchydimensionDisplayName,DECODE (CashTransactionSummary.flowIndicatorHierarchymemberName, 'INFLOW' , 'SOURCE_CE_INFLOWS' ,'OUTFLOW' , 'SOURCE_CE_OUTFLOWS' ,CashTransactionSummary.flowIndicatorHierarchymemberName) flowIndicatorHierarchymemberName,CashTransactionSummary.flowIndicatorHierarchydepth flowIndicatorHierarchydepth,CashTransactionSummary.flowIndicatorHierarchymemberUniqueName flowIndicatorHierarchymemberUniqueName,CashTransactionSummary.flowIndicatorHierarchyflowIndicatorCode flowIndicatorHierarchyflowIndicatorCode,CashTransactionSummary.flowIndicatorHierarchyflowIndicator flowIndicatorHierarchyflowIndicator,'Transaction Type' transactionTypeHierarchydimensionDisplayName,'CE_TRX_TYPE.' || CashTransactionSummary.transactionTypeHierarchymemberName transactionTypeHierarchymemberName,CashTransactionSummary.transactionTypeHierarchydepth transactionTypeHierarchydepth,CashTransactionSummary.transactionTypeHierarchymemberUniqueName transactionTypeHierarchymemberUniqueName,CashTransactionSummary.transactionTypeHierarchytransactionTypeCode transactionTypeHierarchytransactionTypeCode,CashTransactionSummary.transactionTypeHierarchytransactionType transactionTypeHierarchytransactionType,'Cash Transaction Currency' cashTransactionCurrencyHierarchydimensionDisplayName,CashTransactionSummary.cashTransactionCurrencyHierarchymemberName cashTransactionCurrencyHierarchymemberName,CashTransactionSummary.cashTransactionCurrencyHierarchydepth cashTransactionCurrencyHierarchydepth,CashTransactionSummary.cashTransactionCurrencyHierarchymemberUniqueName cashTransactionCurrencyHierarchymemberUniqueName,CashTransactionSummary.cashTransactionCurrencyHierarchycashTransactionCurrencyCode cashTransactionCurrencyHierarchycashTransactionCurrencyCode,'CURRENCY_TYPE_LEDGER' AS currencyTypeHierarchymemberName,'FORECAST_METHOD_SMART_DRIVER' AS forecastHierarchymemberName,cashTransactionAmount cashTransactionAmount, COUNT(*) over ()  totalCount, 'N' isFiltered FROM CashTransactionSummary WHERE to_date(CashTransactionSummary.transactionDateHierarchyperiodStartDate,'yyyy-MM-dd')>=to_date('2010-06-19','yyyy-MM-dd') AND to_date(CashTransactionSummary.transactionDateHierarchyperiodEndDate,'yyyy-MM-dd')<=to_date('2025-01-03','yyyy-MM-dd') ORDER BY transactionDateHierarchyhierOrder,legalEntityHierarchyhierOrder,businessUnitHierarchyhierOrder,bankAccountHierarchyhierOrder,flowIndicatorHierarchyhierOrder,transactionTypeHierarchyhierOrder,cashTransactionCurrencyHierarchyhierOrder"
+                },
+                "hierarchy_query_request_payload": [
+                    {
+                        "hierarchies": {
+                            "LegalEntityHierarchy": {
+                                "module": "oraErpCoreStructure",
+                                "name": "LegalEntityHierarchy",
+                                "aliases": {
+                                    "$memberName": "LegalEntityHierarchymemberName",
+                                    "$depth": "LegalEntityHierarchydepth",
+                                    "$memberUniqueName": "LegalEntityHierarchymemberUniqueName",
+                                    "$memberDescription": "LegalEntityHierarchymemberDescription",
+                                    "$levelName": "LegalEntityHierarchylevelName",
+                                    "$isLeaf": "LegalEntityHierarchyisLeaf",
+                                    "$parentLevelName": "LegalEntityHierarchyparentLevelName",
+                                    "$parentUniqueName": "LegalEntityHierarchyparentUniqueName",
+                                    "$hierOrder": "LegalEntityHierarchyhierOrder",
+                                    "legalEntityIdentifier": "LegalEntityHierarchylegalEntityIdentifier",
+                                    "legalEntityId": "LegalEntityHierarchylegalEntityId",
+                                    "legalEntityName": "LegalEntityHierarchylegalEntityName",
+                                    "legalEntityCountryCode": "LegalEntityHierarchylegalEntityCountryCode",
+                                    "ledgerCurrCode": "LegalEntityHierarchyledgerCurrCode"
+                                },
+                                "filter": "($depth IN (0,1))"
+                            }
+                        },
+                        "select": "select LegalEntityHierarchymemberName, LegalEntityHierarchymemberDescription,LegalEntityHierarchymemberUniqueName, COUNT(*) over() as count from LegalEntityHierarchy"
+                    },
+                    {
+                        "hierarchies": {
+                            "BusinessUnitHierarchy": {
+                                "module": "oraErpCoreStructure",
+                                "name": "BusinessUnitHierarchy",
+                                "aliases": {
+                                    "$memberName": "BusinessUnitHierarchymemberName",
+                                    "$depth": "BusinessUnitHierarchydepth",
+                                    "$memberUniqueName": "BusinessUnitHierarchymemberUniqueName",
+                                    "$memberDescription": "BusinessUnitHierarchymemberDescription",
+                                    "$levelName": "BusinessUnitHierarchylevelName",
+                                    "$isLeaf": "BusinessUnitHierarchyisLeaf",
+                                    "$parentLevelName": "BusinessUnitHierarchyparentLevelName",
+                                    "$parentUniqueName": "BusinessUnitHierarchyparentUniqueName",
+                                    "$hierOrder": "BusinessUnitHierarchyhierOrder",
+                                    "businessUnitId": "BusinessUnitHierarchybusinessUnitId",
+                                    "businessUnitName": "BusinessUnitHierarchybusinessUnitName"
+                                },
+                                "filter": "($depth IN (0,1))"
+                            }
+                        },
+                        "select": "select BusinessUnitHierarchymemberName, BusinessUnitHierarchymemberDescription,BusinessUnitHierarchymemberUniqueName, COUNT(*) over() as count from BusinessUnitHierarchy"
+                    },
+                    {
+                        "hierarchies": {
+                            "BankAccountHierarchy": {
+                                "module": "oraErpCoreBankingSetup",
+                                "name": "BankAccountHierarchy",
+                                "aliases": {
+                                    "$memberName": "BankAccountHierarchymemberName",
+                                    "$depth": "BankAccountHierarchydepth",
+                                    "$memberUniqueName": "BankAccountHierarchymemberUniqueName",
+                                    "$memberDescription": "BankAccountHierarchymemberDescription",
+                                    "$levelName": "BankAccountHierarchylevelName",
+                                    "$isLeaf": "BankAccountHierarchyisLeaf",
+                                    "$parentLevelName": "BankAccountHierarchyparentLevelName",
+                                    "$parentUniqueName": "BankAccountHierarchyparentUniqueName",
+                                    "$hierOrder": "BankAccountHierarchyhierOrder",
+                                    "bankAccountId": "BankAccountHierarchybankAccountId",
+                                    "bankAccountName": "BankAccountHierarchybankAccountName",
+                                    "bankName": "BankAccountHierarchybankName",
+                                    "bankBranchName": "BankAccountHierarchybankBranchName",
+                                    "targetBalance": "BankAccountHierarchytargetBalance",
+                                    "currencyCode": "BankAccountHierarchycurrencyCode"
+                                },
+                                "filter": "($depth IN (0,1))"
+                            }
+                        },
+                        "select": "select BankAccountHierarchymemberName, BankAccountHierarchymemberUniqueName,BankAccountHierarchymemberDescription, COUNT(*) over() as count from BankAccountHierarchy"
+                    }
+                ],
+                "ads_data_extract_query_request_payload": {
+                    "analyticViewName": "CashTransactionSummary",
+                    "dataSlice": null,
+                    "measures": [
+                        "cashTransactionAmount"
+                    ],
+                    "grid": [
+                        "Transaction Date",
+                        "Legal Entity",
+                        "Business Unit",
+                        "Bank Account",
+                        "Flow Indicator",
+                        "Transaction Type",
+                        "Cash Transaction Currency"
+                    ],
+                    "expand": [
+                        {
+                            "between": {
+                                "startNumberValue": null,
+                                "endNumberValue": null,
+                                "startValue": "2010-06-19",
+                                "endValue": "2025-01-03"
+                            },
+                            "dimensionDisplayName": "Transaction Date",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                3
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        },
+                        {
+                            "between": null,
+                            "dimensionDisplayName": "Legal Entity",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        },
+                        {
+                            "between": null,
+                            "dimensionDisplayName": "Business Unit",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        },
+                        {
+                            "between": null,
+                            "dimensionDisplayName": "Bank Account",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        },
+                        {
+                            "between": null,
+                            "dimensionDisplayName": "Flow Indicator",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        },
+                        {
+                            "between": null,
+                            "dimensionDisplayName": "Transaction Type",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        },
+                        {
+                            "between": null,
+                            "dimensionDisplayName": "Cash Transaction Currency",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": false
+                        }
+                    ],
+                    "filter": [],
+                    "operator": null,
+                    "allLevel": null,
+                    "sameLevel": null,
+                    "search": null,
+                    "includeMemberUniqueNameFlag": true,
+                    "includeMemberDescriptionFlag": false,
+                    "includeLevelNameFlag": false,
+                    "includeIsLeafFlag": false,
+                    "includeParentLevelNameFlag": false,
+                    "includeParentUniqueNameFlag": false,
+                    "includeLevelAttributeFlag": true,
+                    "includeIsLastNodeFlag": false,
+                    "includeLevelDescriptionFlag": false,
+                    "includeLeafNodeFlag": false,
+                    "includeNullInResponseFlag": false,
+                    "includeMLSFlag": false,
+                    "includeHierOrderFlag": false,
+                    "includeMemberNameDecodeFlag": true,
+                    "includeDepthInMemberUniqueNameFlag": false,
+                    "includeDepthInParentUniqueNameFlag": false,
+                    "convertUniqueNameToDepthAndLevelFlag": false
+                },
+                "ads_member_extract_query_request_payload": {
+                    "analyticViewName": "CashTransactionSummary",
+                    "grid": [
+                        "Legal Entity",
+                        "Business Unit",
+                        "Bank Account"
+                    ],
+                    "expand": [
+                        {
+                            "dimensionDisplayName": "Legal Entity",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                0,
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": true
+                        },
+                        {
+                            "dimensionDisplayName": "Business Unit",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                0,
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": true
+                        },
+                        {
+                            "dimensionDisplayName": "Bank Account",
+                            "memberName": null,
+                            "levelName": null,
+                            "memberUniqueName": null,
+                            "parentLevelName": null,
+                            "parentUniqueName": null,
+                            "depth": [
+                                0,
+                                1
+                            ],
+                            "essbaseDepth": null,
+                            "genLevel": null,
+                            "isLeaf": null,
+                            "includeTopLevelInAllLevelFlag": true
+                        }
+                    ],
+                    "filter": null,
+                    "allLevel": null,
+                    "sameLevel": null,
+                    "search": null,
+                    "includeMemberUniqueNameFlag": true,
+                    "includeMemberDescriptionFlag": true,
+                    "includeLevelNameFlag": true,
+                    "includeIsLeafFlag": true,
+                    "includeParentLevelNameFlag": true,
+                    "includeParentUniqueNameFlag": true,
+                    "includeLevelAttributeFlag": true,
+                    "includeIsLastNodeFlag": true,
+                    "includeLevelDescriptionFlag": true,
+                    "includeLeafNodeFlag": false,
+                    "includeNullInResponseFlag": false,
+                    "includeMLSFlag": false,
+                    "includeHierOrderFlag": true,
+                    "includeMemberNameDecodeFlag": true
+                }
+            }
+        ]
+    }
+}
